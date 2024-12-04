@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace LabWork
 {
@@ -11,8 +13,25 @@ namespace LabWork
     {
         static void Main(string[] args)
         {
-            
-            Console.WriteLine("Hello World!");
+            // Вхідне речення
+            Console.WriteLine("Введіть речення:");
+            string sentence = Console.ReadLine();
+
+            // Регулярний вираз для знаходження слів
+            string pattern = @"\b\w+\b";
+
+            // Створення об'єкта Regex
+            Regex regex = new Regex(pattern);
+
+            // Знаходження всіх слів у реченні
+            MatchCollection matches = regex.Matches(sentence);
+
+            // Виведення слів у стовпчик
+            Console.WriteLine("Слова у стовпчик:");
+            foreach (Match match in matches)
+            {
+                Console.WriteLine(match.Value);
+            }
         }
     }
 }
